@@ -117,7 +117,7 @@ export default function MobileTransport(props: MobileTransportProps) {
 		: undefined;
 
 	return (
-		<div className="w-full flex flex-col justify-center items-center m-4">
+		<div className="w-full flex flex-col justify-center items-center">
 			{openUrl ? (
 				peers.length ? (
 					remoteState.ready ? (
@@ -126,15 +126,24 @@ export default function MobileTransport(props: MobileTransportProps) {
 						<p>Please enable camera on device</p>
 					)
 				) : (
-					<>
-						<p className="mt-8 mb-4 text-sm">
-							Scan QR code by mobile device or use this{" "}
-							<a href={openUrl}>link</a>
-						</p>
-						<div className="p-4 bg-white">
-							<QRCode value={openUrl} />
+					<a
+						href={openUrl}
+						className="grid grid-cols-[200px_1fr] gap-5 bg-border-quaternary p-4 rounded-2xl	w-full "
+					>
+						<div className="p-1 bg-white overflow-hidden rounded-lg">
+							<QRCode value={openUrl} size={192} />
 						</div>
-					</>
+						<div className="flex flex-col justify-center text-left leading-[125%]">
+							<div className="text-xl	font-bold mb-2">
+								Or scan with your mobile
+							</div>
+							<div className="text-secondary-text">
+								Open SpaceWard access to the camera on your
+								mobile. Then go to the dApp and scan QR code for
+								connection.
+							</div>
+						</div>
+					</a>
 				)
 			) : (
 				"Loading..."
